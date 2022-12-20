@@ -1,12 +1,3 @@
-APPENDIX - Arduino Code
-/*
-* Arduino Wireless Communication Tutorial
-*     Example 2 - Receiver Code
-*                
-* by Dejan Nedelkovski, www.HowToMechatronics.com
-* 
-* Library: TMRh20/RF24, https://github.com/tmrh20/RF24/
-*/
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -89,9 +80,9 @@ void loop() {
     lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
   
     if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-      //Serial.print("Distance (mm): "); Serial.println(measure.RangeMilliMeter);
+      Serial.print("Distance (mm): "); Serial.println(measure.RangeMilliMeter);
     } else {
-      //Serial.println(" out of range ");
+      Serial.println(" out of range ");
     }
     int distance = measure.RangeMilliMeter;
 
@@ -104,12 +95,8 @@ void loop() {
     
     buttonState = digitalRead(buttonPin);
     
-    //Serial.println(buttonState);
-    //int soundData = analogRead(sound);
     Array[0] = lowpassDistance;
     Array[1] = buttonState;
-    //Serial.print("array1: ");
-    //Serial.println(Array[0]);
     radio.write(&Array, sizeof(Array));
     
   }
